@@ -21,12 +21,21 @@ pip install -r requirements.txt
 
 [Obtain an API Key](https://www.alphavantage.co/support/#api-key) from AlphaVantage.
 
+
+TODO - sendgrid info, obtain sendgrid API key, set the key and sender adderss as env vars.
+
+
 Create a ".env" file and add contents like the following (using your own AlphaVantage API Key):
 
 ```sh
 # this is the ".env" file:
 ALPHAVANTAGE_API_KEY="..."
 ```
+
+# optional:
+
+SENDGRID_API_KEY = "---"
+SENDGRID_SENDER_ADDRESS = "--"
 
 ## Usage
 

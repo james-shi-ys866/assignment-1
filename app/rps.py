@@ -14,6 +14,7 @@ def generate_computer_choice():
     return choice(VALID_OPTIONS)
 
 
+
 def determine_outcome(u, c):
     """
     Determines the outcome of a Rock-Paper-Scissors game between a user and the computer.

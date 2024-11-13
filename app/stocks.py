@@ -1,10 +1,9 @@
+
 # this is the app/stocks.py file...
 
 # LOCAL DEV (ENV VARS)
 
-from statistics import mean
-
-import requests
+from pandas import read_csv
 from plotly.express import line
 
 

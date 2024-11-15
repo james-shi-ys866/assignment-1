@@ -14,6 +14,8 @@ def fetch_stocks_csv(symbol):
     df = read_csv(request_url)
     return df
 
+def format_usd(my_price):
+    return f"${float(my_price):,.2f}"
 
 if __name__ == "__main__":
 
@@ -40,8 +42,7 @@ if __name__ == "__main__":
     print("LATEST CLOSING PRICE:")
     first_row = df.iloc[0]
     #print(first_row)
-    print(f"${first_row['adjusted_close']}", "as of", first_row["timestamp"])
-
+    print(f"{format_usd(first_row['adjusted_close'])} as of {first_row['timestamp']}")
 
     # Challenge B
     #
@@ -53,13 +54,13 @@ if __name__ == "__main__":
 
     print("-------------------------")
     print("RECENT STATS...")
-    print(f"MEAN PRICE: ${recent_df['adjusted_close'].mean()}")
-    print(f"MEDIAN PRICE: ${recent_df['adjusted_close'].median()}")
-    print(f"MIN PRICE: ${recent_df['adjusted_close'].min()}")
-    print(f"MAX PRICE: ${recent_df['adjusted_close'].max()}")
+    print(f"MEAN PRICE: {format_usd(recent_df['adjusted_close'].mean())}")
+    print(f"MEDIAN PRICE: {format_usd(recent_df['adjusted_close'].median())}")
+    print(f"MIN PRICE: {format_usd(recent_df['adjusted_close'].min())}")
+    print(f"MAX PRICE: {format_usd(recent_df['adjusted_close'].max())}")
     # quantiles, for fun :-)
-    print(f"75TH PERCENTILE: ${recent_df['adjusted_close'].quantile(.75).round(2)}")
-    print(f"25TH PERCENTILE: ${recent_df['adjusted_close'].quantile(.25).round(2)}")
+    print(f"75TH PERCENTILE: {format_usd(recent_df['adjusted_close'].quantile(.75).round(2))}")
+    print(f"25TH PERCENTILE: {format_usd(recent_df['adjusted_close'].quantile(.25).round(2))}")
 
 
     # Challenge C
@@ -78,5 +79,5 @@ if __name__ == "__main__":
     latest_price = first_row['adjusted_close']
 
     send_email_with_sendgrid(subject="Stocks Report",
-        html_content=f"Latest price for {symbol} is {latest_price}"
+        html_content=f"Latest price for {symbol} is {format_usd(latest_price)}"
     )

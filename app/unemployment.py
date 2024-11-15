@@ -2,6 +2,8 @@
 
 # LOCAL DEV (ENV VARS)
 
+from app.email_service import send_email_with_sendgrid
+
 from statistics import mean
 
 import requests
@@ -83,3 +85,11 @@ if __name__ == "__main__":
 
     fig = line(x=dates, y=rates, title="United States Unemployment Rate over time", labels= {"x": "Month", "y": "Unemployment Rate"})
     fig.show()
+
+ # SEND EMAIL
+
+    latest_rate = data[0]['value']
+
+    send_email_with_sendgrid(subject="Latest Unemployment Rate",
+        html_content=f"Latest rate is {latest_rate}"
+    )

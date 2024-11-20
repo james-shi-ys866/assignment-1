@@ -12,3 +12,4 @@ sendgrid==6.5.0
 
 pytest
 
+flask

@@ -1,0 +1,41 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "cocktails" %}
+
+{% block content %}
+
+<h1>Cocktails</h1>
+
+    <p class="lead">This is the cocktails page</p>
+
+
+    <ul>
+    {% for cocktail in cocktails %}
+        <li>{{ cocktail.name }} </li>
+    {% endfor %}
+    </ul>
+
+    {% if cocktails|length > 0 %}
+
+        <!--div class="container"-->
+        <div class="row">
+            {% for cocktail in cocktails %}
+                <div class="col">
+                    <div class="card" style="width: 18rem; margin-bottom: 20px;">
+                        <img class="card-img-top" src="{{ cocktail.image }}" alt="an image of '{{ cocktail.name }}'">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cocktail.name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!--/div-->
+
+    {% else %}
+
+        <p>Oops, no cocktails found.</p>
+
+    {% endif %}
+
+
+{% endblock %}

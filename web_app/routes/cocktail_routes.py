@@ -1,6 +1,7 @@
 # this is the "web_app/routes/home_routes.py" file...
 
-from flask import Blueprint, requests, render_template
+from flask import Blueprint, render_template
+import requests
 
 cocktail_routes = Blueprint("cocktail_routes", __name__)
 

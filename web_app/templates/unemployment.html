@@ -1,0 +1,39 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "unemployment" %}
+
+{% block content %}
+
+    <h2>Unemployment</h2>
+
+    <div id="chart-container" height="700px"></div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+
+        console.log("UNEMPLOYMENT DASHBOARD...")
+
+        var unemploymentData = JSON.parse('{{data | tojson}}') 
+        console.log(unemploymentData)
+
+        var dates = unemploymentData.map(obj => obj["date"])
+        var values = unemploymentData.map(obj => obj["value"])
+
+
+        var series = {
+            x: dates,
+            y: values,
+            mode: "lines+markers"
+        }
+        var data = [series]
+        var layout = {
+            title: "US Monthly Unemployment Rate (%)",
+            height: 600,
+            yaxis: {
+                tickformat: '.1f' 
+            }
+        }
+        Plotly.newPlot("chart-container", data, layout, {responsive: true})
+
+    </script>
+
+{% endblock %}
